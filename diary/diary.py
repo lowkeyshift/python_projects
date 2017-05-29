@@ -77,7 +77,7 @@ def delete_entry(entry):
     """Delete an existing entry"""
     if input("Are you sure? [yN] ").lower() == 'y':
         entry.delete_instance()
-        print("Entry has been deleted!")
+        print("Entry Deleted!")
 
 menu = OrderedDict([
     ('a', add_entry),
