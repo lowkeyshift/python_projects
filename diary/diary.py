@@ -58,26 +58,31 @@ def view_entries(search_query=None):
         print('='*len(timestamp))
         print(entry.content)
         print('n) next entry')
+        print('d) delete entry')
         print('q) return to main menu')
 
         next_action = input('Action: [Nq] ').lower().strip()
 
         if next_action == 'q':
             break
+        elif next_action == 'd':
+            delete_entry(entry)
 
 
 def search_entries():
     """Search through entires using strings"""
     view_entries(input('Search query: '))
 
-def delete(entry):
+def delete_entry(entry):
     """Delete an existing entry"""
+    if input("Are you sure? [yN] ").lower() == 'y':
+        entry.delete_instance()
+        print("Entry has been deleted!")
 
 menu = OrderedDict([
     ('a', add_entry),
     ('v', view_entries),
     ('s', search_entries),
-    ('d', delete),
 
 ])
 
