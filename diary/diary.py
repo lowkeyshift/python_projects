@@ -2,6 +2,7 @@
 
 from collections import OrderedDict
 import datetime
+import os
 import sys
 
 
@@ -22,18 +23,23 @@ def initialize():
     db.connect()
     db.create_tables([Entry], safe=True)
 
+def clear():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
 
 def menu_loop():
     """Show Menu"""
     choice = None
 
     while choice != 'q':
+        clear()
         print("Enter 'q' to quit.")
         for key, value in menu.items():
             print('{} {}'.format(key, value.__doc__))
         choice = input('Action: ').lower().strip()
 
         if choice in menu:
+            clear()
             menu[choice]()
 
 def add_entry():
@@ -42,7 +48,7 @@ def add_entry():
     data = sys.stdin.read().strip()
 
     if data:
-        if input('Save entry? [Y/n] ').lower() != 'n':
+        if input('\n\n'+'Save entry? [Y/n] ').lower() != 'n':
             Entry.create(content=data)
             print("Saved successfully!")
 
@@ -54,14 +60,16 @@ def view_entries(search_query=None):
 
     for entry in entries:
         timestamp = entry.timestamp.strftime('%A %B %d, %Y %I:%M%p')
+        clear()
         print(timestamp)
         print('='*len(timestamp))
         print(entry.content)
+        print('\n\n'+'='*len(timestamp))
         print('n) next entry')
         print('d) delete entry')
         print('q) return to main menu')
 
-        next_action = input('Action: [Nq] ').lower().strip()
+        next_action = input('Action: [Ndq] ').lower().strip()
 
         if next_action == 'q':
             break
