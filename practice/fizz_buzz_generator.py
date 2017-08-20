@@ -1,7 +1,4 @@
-
-from random import random
-
-# Change the count size to play the FizzBuzz game to what ever limit you choose
+ Change the count size to play the FizzBuzz game to what ever limit you choose
 # The count starts at 0 and end at 99
 count_size = 100
 for i in range(count_size):
