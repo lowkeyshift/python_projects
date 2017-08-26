@@ -1,3 +1,5 @@
+
+
 def stringcases(arg):
     s = str(arg)
     low = s.lower()
@@ -15,5 +17,10 @@ def combo(*lst):
         newlist.append((a[index], b[index]))
     print(newlist)
 
-#combo([1, 2, 3], 'abc')
-combo('abc', 'def')
+def combo2(*var):
+    a,b = var
+    list_1 = list(a)
+    list_2 = list(b)
+    return zip(list_1, list_2)
+combo2([1, 2, 3], 'abc')
+#combo('abc', 'def')
