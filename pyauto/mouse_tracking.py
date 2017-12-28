@@ -1,23 +1,18 @@
 #!/bin/python3
-import os
-
 import pyautogui as pyg
-
-
-def clear():
-    """Clear command that will clear the screen."""
-    os.system('cls' if os.name == 'nt' else 'clear')
 
 
 def mouse_locate():
     """Return current position mouse pointer; returns the x,y."""
+    print("Press Crtl-C to quit mouse tracker.")
     try:
         while True:
-            m_position = pyg.position()
-            print(chr(27) + "[2J")
-            print(m_position)
+            x, y = pyg.position()
+            positionStr = "X: " + str(x).rjust(4) + " Y: " + str(y).rjust(4)
+            print(positionStr, end='')
+            print('\b' * len(positionStr), end='', flush=True)
     except KeyboardInterrupt:
-        print('Interrupted by user!')
+        print('\nInterrupted by user!')
 
 
 mouse_locate()
